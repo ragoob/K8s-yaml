@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-webapp-2
+  labels:
+    name: simple-webapp-2
+spec:
+  containers:
+  - image: kodekloud/webapp-delayed-start
+    imagePullPolicy: Always
+    name: simple-webapp-2
+    livenessProbe :
+      httpGet:
+        path:  /live
+        port: 8080
+      initialDelaySeconds: 80
+      periodSeconds: 1
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-6phbh
+      readOnly: true
+  restartPolicy: Always
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-6phbh
+    secret:
+      defaultMode: 420
+      secretName: default-token-6phbh

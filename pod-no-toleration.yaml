@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: webapp-color
+  name: webapp-color-2
+spec:
+  containers:
+  -  image: kodekloud/webapp-color
+     name: webapp-color

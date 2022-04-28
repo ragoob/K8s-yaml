@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-my-aptar
+  namespace: front-end-service
+spec:
+  tls:
+  - hosts:
+    - my.aptar.mobi
+  rules:
+  - host: my.aptar.mobi
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: portal-fe
+          servicePort: 80
+      - path: /images
+        backend:
+          serviceName: static-content
+          servicePort: 3000
