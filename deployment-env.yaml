@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment // name of deployment resource
+  labels:
+    app: nginx // label selector to match select 
+spec: //spec pf deployment 
+  replicas: 3 // number of replicas that reflect in number of running pods
+  selector:
+    matchLabels:
+      app: nginx  // label selector to match select 
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:  //spec of replica
+      containers: //containers list
+      - env: // environment variables
+        - name: ALLOW_CACHE
+          value: "false"
+      - name: nginx // container name
+        image: nginx:1.14.2 // container image name
+        ports:
+        - containerPort: 80 // running port
