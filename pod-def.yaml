@@ -4,9 +4,6 @@ metadata:
    name: my-pod
    labels:
      myapp: app
-
-
-
 spec:
   containers:
   - image:  image
