@@ -7,8 +7,5 @@ metadata:
   namespace: default
 spec:
   containers:
-  - envFrom:
-    - configMapRef:
-        name: webapp-config-map
-    image: kodekloud/webapp-color
-    name: webapp-color
+    image: nginx
+    name: nginx
